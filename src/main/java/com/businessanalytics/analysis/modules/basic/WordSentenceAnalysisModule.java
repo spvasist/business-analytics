@@ -1,7 +1,7 @@
 package com.businessanalytics.analysis.modules.basic;
 
 import com.businessanalytics.analysis.modules.AnalysisModule;
-import com.businessanalytics.analysis.modules.beans.WordSentenceAnalysisResult;
+import com.businessanalytics.analysis.modules.basic.result.beans.WordSentenceAnalysisResult;
 import com.businessanalytics.utils.StringUtil;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  * Created by srikanth on 13-04-2017.
  */
 @Component
-public class WordSentenceModule implements AnalysisModule<String, WordSentenceAnalysisResult> {
+public class WordSentenceAnalysisModule implements AnalysisModule<String, WordSentenceAnalysisResult> {
 
     @Override
     public WordSentenceAnalysisResult run(String content) {

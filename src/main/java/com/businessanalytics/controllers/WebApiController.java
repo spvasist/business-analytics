@@ -1,5 +1,6 @@
 package com.businessanalytics.controllers;
 
+import com.businessanalytics.analysis.engines.AmazonProductAnalysisEngine;
 import com.businessanalytics.analysis.engines.AnalysisEngine;
 import com.businessanalytics.content.ContentRequest;
 import com.businessanalytics.content.beans.amazon.AmazonProduct;
@@ -18,14 +19,12 @@ public class WebApiController {
     ToiNewsArticleContentRetriever toiNewsArticleContentRetriever;
     private final
     AmazonProductContentRetriever amazonProductContentRetriever;
-    private final
-    AnalysisEngine analysisEngine;
+    @Autowired
+    AmazonProductAnalysisEngine amazonProductAnalysisEngine;
 
     @Autowired
-    public WebApiController(AnalysisEngine analysisEngine
-            , ToiNewsArticleContentRetriever toiContentEngine
+    public WebApiController(ToiNewsArticleContentRetriever toiContentEngine
             , AmazonProductContentRetriever amazonProductContentRetriever) {
-        this.analysisEngine = analysisEngine;
         this.toiNewsArticleContentRetriever = toiContentEngine;
         this.amazonProductContentRetriever = amazonProductContentRetriever;
     }
@@ -40,7 +39,7 @@ public class WebApiController {
             case AMAZON_PRODUCT:
                 url = contentRequest.getDataSource();
                 AmazonProduct amazonProduct = amazonProductContentRetriever.fetchContent(url);
-
+                amazonProductAnalysisEngine.run(amazonProduct);
                 break;
         }
 

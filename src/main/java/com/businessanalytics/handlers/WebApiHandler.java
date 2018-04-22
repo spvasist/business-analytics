@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by srikanth on 13-04-2017.
  */
-@RestController("/analyze")
+@RestController
+@RequestMapping("/analyze")
 @Component
 public class WebApiHandler {
     private final

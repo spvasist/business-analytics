@@ -1,34 +1,38 @@
 package com.businessanalytics.controllers;
 
-import com.businessanalytics.analysis.AnalysisEngine;
-import com.businessanalytics.beans.analysisresults.WordSentenceAnalysisResult;
-import com.businessanalytics.beans.content.Content;
-import com.businessanalytics.beans.content.ContentRequest;
-import com.businessanalytics.contentengines.ToiContentEngine;
+import com.businessanalytics.analysis.engines.AnalysisEngine;
+import com.businessanalytics.content.ContentRequest;
+import com.businessanalytics.content.beans.toi.ToiNewsArticle;
+import com.businessanalytics.content.retrievers.ToiNewsArticleContentRetriever;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import static com.businessanalytics.contentengines.ContentTypes.*;
 
 /**
  * Created by srikanth on 13-04-2017.
  */
 @Component
 public class WebApiController {
-    @Autowired
-    ToiContentEngine toiContentEngine;
-@Autowired
+    private final
+    ToiNewsArticleContentRetriever toiNewsArticleContentRetriever;
+    private final
     AnalysisEngine analysisEngine;
-    public void performAnalysis(ContentRequest contentRequest) {
-        Content content = null;
-        switch (contentRequest.getContentType()) {
-            case TOI:
-                String url = String.valueOf(contentRequest.getRequestData());
-                content = toiContentEngine.fetchContent(url);
-                break;
 
+    @Autowired
+    public WebApiController(AnalysisEngine analysisEngine, ToiNewsArticleContentRetriever toiContentEngine) {
+        this.analysisEngine = analysisEngine;
+        this.toiNewsArticleContentRetriever = toiContentEngine;
+    }
+
+    public void performAnalysis(ContentRequest<String> contentRequest) {
+        switch (contentRequest.getContentType()) {
+            case TOI_NEWS:
+                String url = contentRequest.getDataSource();
+                ToiNewsArticle content = toiNewsArticleContentRetriever.fetchContent(url);
+                break;
+            case AMAZON_PRODUCT:
+
+                break;
         }
-        analysisEngine.run(content);
 
     }
 }

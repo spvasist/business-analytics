@@ -1,4 +1,4 @@
-package com.businessanalytics.beans.analysisresults;
+package com.businessanalytics.analysis.modules.basic.result.beans;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,12 +1,13 @@
-package com.businessanalytics.contentengines;
+package com.businessanalytics.content;
 
 /**
  * Created by srikanth on 13-04-2017.
  */
 public enum ContentTypes {
-    TOI,
+    TOI_NEWS,
     TWITTER,
     FACEBOOK,
     NYTIMES,
-    GOOGLE
+    GOOGLE,
+    AMAZON_PRODUCT
 }

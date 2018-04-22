@@ -1,6 +1,5 @@
-package com.businessanalytics.beans.content;
+package com.businessanalytics.content;
 
-import com.businessanalytics.contentengines.ContentTypes;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Data
-public class ContentRequest {
+public class ContentRequest<T> {
     ContentTypes contentType;
-    Object requestData;
+    T dataSource;
 }

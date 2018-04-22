@@ -9,5 +9,5 @@ import java.util.List;
  */
 @Component
 public interface ContentRetriever<T> {
-    <T> T fetchContent(String source);
+    T fetchContent(String source);
 }

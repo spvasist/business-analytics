@@ -1,16 +1,12 @@
 package com.businessanalytics.content.retrievers;
 
-import com.businessanalytics.content.beans.amazon.AmazonProductComment;
-import com.businessanalytics.utils.FileUtil;
+import com.businessanalytics.content.beans.amazon.AmazonProduct;
+import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-import java.util.List;
-
-public class AmazonProductContentRetriever implements ContentRetriever {
+@Component
+public class AmazonProductContentRetriever implements ContentRetriever<AmazonProduct> {
     @Override
-    public List<AmazonProductComment> fetchContent(String source) {
-        AmazonProductComment amazonProductComment = new AmazonProductComment();
-        amazonProductComment.setBody(FileUtil.readFileString(source));
-        return Collections.singletonList(amazonProductComment);
+    public AmazonProduct fetchContent(String source) {
+        return new AmazonProduct();
     }
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @Component
 @Data
 public class UserComment {
+    public String id;
     public String title;
     public String body;
     public Date time;

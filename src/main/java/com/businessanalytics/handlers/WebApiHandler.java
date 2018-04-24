@@ -25,9 +25,9 @@ public class WebApiHandler {
     }
 
     @RequestMapping(value = "/amazon-product", method = RequestMethod.POST)
-    public void analyze(@RequestBody ContentRequest<String> contentRequest) {
+    public Object analyze(@RequestBody ContentRequest<String> contentRequest) {
         //contentRequest.setContentType(ContentTypes.TOI_NEWS);
         //contentRequest.setDataSource("D:\\news.txt");
-        webApiController.performAnalysis(contentRequest);
+        return webApiController.performAnalysis(contentRequest);
     }
 }
